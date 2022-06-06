@@ -1,26 +1,21 @@
-<<<<<<< HEAD
 // import { Link, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Layout from "./componnt/Layout";
 // import { Context } from "react";
 import React, { useState } from "react";
-import { UserContext } from "./context/UserContext";
+import { UserContext, UsersContext } from "./context/UserContext";
 
 function App() {
   const [user, setUser] = useState({ name: "avi", password: "123" });
-  let a = "dddddddd";
-  return (
-    <UserContext.Provider value={{ user, setUser }}>
-      <Layout />
-    </UserContext.Provider>
-  );
-=======
-import logo from "./logo.svg";
-import "./App.css";
+  const [users, setUsers] = useState([user]);
 
-function App() {
-	return <div className="App"></div>;
->>>>>>> 22789fb90a170f0db56bdc0680779b76a4c6f1b9
+  return (
+    <UsersContext.Provider value={{ users, setUsers }}>
+      <UserContext.Provider value={{ user, setUser }}>
+        <Layout />
+      </UserContext.Provider>
+    </UsersContext.Provider>
+  );
 }
 
 export default App;

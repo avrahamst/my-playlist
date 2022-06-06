@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
-import { useContext, Context, useState } from "react";
-import { UserContext } from "../context/UserContext";
+import { useContext, useState } from "react";
+import { UserContext, UsersContext } from "../context/UserContext";
 import Header from "./Header";
 
 export default function Login() {
   // const { userName, setUserName } = useContext(UserContext);
-  const { user, setUser } = useContext(UserContext);
+  const { user } = useContext(UserContext);
+  const { users } = useContext(UsersContext);
   let [flag, setflag] = useState(false);
   let testName = "",
     testPassword = "";
@@ -17,9 +18,13 @@ export default function Login() {
         placeholder="userName"
         onChange={(e) => {
           testName = e.target.value;
-          if (testName == user.name && testPassword == user.password) {
-            alert("bnk");
-            setflag(true);
+          for (let i = 0; i < users.length; i++) {
+            if (
+              testName === users[i].name &&
+              testPassword === users[i].password
+            ) {
+              setflag(true);
+            }
           }
         }}
       />
@@ -28,49 +33,28 @@ export default function Login() {
         placeholder="password"
         onChange={(e) => {
           testPassword = e.target.value;
-          if (testName == user.name && testPassword == user.password) {
-            setflag(true);
-            // alert("bnk");
+          console.log(users);
+          for (let i = 0; i < users.length; i++) {
+            if (
+              testName === users[i].name &&
+              testPassword === users[i].password
+            ) {
+              setflag(true);
+            }
           }
         }}
       />
-      {/* <Link
-        to={() => {
-          if (user.name === testName) {
-            if (user.password === testPassword) {
-              // alert("ok");
-              return "/main";
-            } else {
-              // alert("Incorrect password");
-            }
-          } else {
-            // alert("No such user Create a new user");
-          }
-        }}
-      >
-        mmm
-      </Link> */}
-      <br />
-      {/* <button
-        onClick={() => {
-          if (user.name === testName) {
-            if (user.password === testPassword) {
-              alert("ok");
-              flag = true;
-            } else {
-              alert("Incorrect password");
-            }
-          } else {
-            alert("No such user Create a new user");
-          }
-        }}
-      >
-        Login
-      </button> */}
-      <Link to="/NewUser">new user</Link>
+
       <br />
 
-      <Link to={flag ? "/main" : "/"}>main</Link>
+      <Link to="/NewUser" className="new_u">
+        new user
+      </Link>
+      <br />
+
+      <Link to={flag ? "/main" : "/"} className="log">
+        main
+      </Link>
     </div>
   );
 }
