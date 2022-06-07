@@ -1,4 +1,11 @@
+import { useContext } from "react";
+import { Link } from "react-router-dom";
+import { UserContext, UsersContext } from "../context/UserContext";
+
 export default function NewUser() {
+  const { user, setUser } = useContext(UserContext);
+  const { users, setUsers } = useContext(UsersContext);
+
   let testName = "",
     testPassword = "";
   return (
@@ -21,7 +28,15 @@ export default function NewUser() {
           }}
         />
       </form>
-      <button onClick={() => {}}>Insert</button>
+      <button
+        onClick={() => {
+          setUser({ name: testName, password: testPassword });
+          users.push({ name: testName, password: testPassword });
+          setUsers(users);
+        }}
+      >
+        Insert
+      </button>
     </div>
   );
 }
