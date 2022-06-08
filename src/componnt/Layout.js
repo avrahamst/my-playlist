@@ -12,6 +12,8 @@ export default function Layout() {
 			<Routes>
 				{/* <Route path="/" element /> */}
 				<Route path="/" element={<Login />} />
+				<Route path="/login" element={<Login />} />
+
 				<Route path="/Register" element={<Register />} />
 				<Route path="/NewUser" element={<NewUser />} />
 

@@ -1,11 +1,13 @@
 import React from "react";
 import Button from "react-bootstrap/Button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
 import { useState, useRef } from "react";
 import logo from "../componnt/logo3.jpg";
 import "./Register.css";
 
 export default function Register() {
+	const navigate = useNavigate();
 	function handleSubmit() {}
 	return (
 		<div className=" container-fluid bg-primary  ">
@@ -103,12 +105,26 @@ export default function Register() {
 							</div>
 						</div>
 						<div className="row">
-							<div className="col-3"></div>
+							<div className="col-4">
+								{" "}
+								<Button
+									// disabled={loading}
+									variant="dark"
+									className=" col-12 mb-3 mt-3"
+									onClick={(e) => {
+										navigate("/login");
+										e.preventDefault();
+									}}
+								>
+									כניסה
+								</Button>
+							</div>
+							<div className="col-2"></div>
 							<div className="col-6">
 								<Button
 									type="submit"
 									// disabled={loading}
-									variant="success"
+									variant="primary"
 									className=" col-12 mb-3 mt-3"
 								>
 									שלח

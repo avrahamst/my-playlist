@@ -1,9 +1,29 @@
 import { Link, Route, Routes } from "react-router-dom";
-import Login from "./Login";
-import NewUser from "./NewUser";
+import { BsSearch } from "react-icons/bs";
+import "./Header.css";
 
 export default function Header() {
-  return <div>khiyg</div>;
+	return (
+		<div>
+			<div className="container">
+				<div className="row height d-flex justify-content-center ">
+					<div className="col-md-6">
+						<div className="form">
+							<i className="fa fa-search"></i>
+							<input
+								type="text"
+								className="form-control form-input"
+								placeholder="Search anything..."
+							/>
+							<span className="left-pan">
+								<BsSearch />
+							</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	);
 }
 
 // <Link to="/Login">Login</Link>

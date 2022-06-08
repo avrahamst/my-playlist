@@ -53,6 +53,10 @@ export default function Login() {
 							type="submit"
 							block="true"
 							className="log-btn col-12"
+							onClick={(e) => {
+								navigate("/main");
+								e.preventDefault();
+							}}
 						>
 							התחברות
 						</Button>
