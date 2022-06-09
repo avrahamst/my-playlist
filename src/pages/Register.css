@@ -1,0 +1,23 @@
+.reg{
+    border: 0px solid;
+    padding: 50px 60px;
+    
+    -webkit-box-shadow: -2px 4px 26px 11px rgba(0,0,0,0.75);
+    -moz-box-shadow: -2px 4px 26px 11px rgba(0,0,0,0.75);
+    box-shadow: -2px 4px 26px 11px rgba(0,0,0,0.75);
+}
+.register-logo{
+    width: 40%;
+    margin-right: 30%
+}
+.container-fluid{
+    height: 100vh;
+}
+.register-logo{
+    width: 25%;
+    margin-right: 36%
+}
+body,html{
+    margin:0;
+    width:100%;
+  }

@@ -1,5 +1,6 @@
 import { React, useContext, useEffect, useState } from "react";
 import { UserContext } from "../context/UserContext";
+import Header from "./Header";
 
 export default function Main() {
   const { user } = useContext(UserContext);
@@ -26,16 +27,24 @@ export default function Main() {
   //       console.error(err);
   //     });
   // });
+  // return (
+  //   <div>
+  //     <div className="log">hello {user.name}</div>
+
+  //     <div>
+  //       <input placeholder="serch" />
+  //     </div>
+  //     <img src={pplay.result.thumbnail} />
+  //     <br />
+  //     <div></div>
+  //   </div>
+  // );
+  // const { user } = useContext(UserContext);
+  // const [pplay, usePplay] = useState();
+
   return (
     <div>
-      <div className="log">hello {user.name}</div>
-
-      <div>
-        <input placeholder="serch" />
-      </div>
-      <img src={pplay.result.thumbnail} />
-      <br />
-      <div></div>
+      <Header />
     </div>
   );
 }
