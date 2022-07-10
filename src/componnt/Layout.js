@@ -2,7 +2,7 @@ import React from "react";
 import Login from "../pages/Login";
 import { Route, Routes } from "react-router-dom";
 import NewUser from "./NewUser";
-import Main from "./Main";
+import Main from "../pages/Main";
 import Register from "../pages/Register";
 
 export default function Layout() {
@@ -13,10 +13,8 @@ export default function Layout() {
 				{/* <Route path="/" element /> */}
 				<Route path="/" element={<Login />} />
 				<Route path="/login" element={<Login />} />
-
 				<Route path="/Register" element={<Register />} />
 				<Route path="/NewUser" element={<NewUser />} />
-
 				<Route path="/main" element={<Main />} />
 			</Routes>
 		</div>

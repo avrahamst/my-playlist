@@ -1,139 +1,200 @@
 import React from "react";
-import Button from "react-bootstrap/Button";
 import { Link, useNavigate } from "react-router-dom";
+import { Form, Row, Button, FormGroup, Col } from "react-bootstrap";
 
-import { useState, useRef } from "react";
+import validateInfo from "../CustomHooks/validateInfo";
+
+import { useState } from "react";
 import logo from "../componnt/logo3.jpg";
 import "./Register.css";
 
 export default function Register() {
-	const navigate = useNavigate();
-	function handleSubmit() {}
-	return (
-		<div className=" container-fluid bg-primary  ">
-			<div className="row" dir="rtl">
-				<div className="col-md-3 col-sm-12 col-xs-12"></div>
+  const [error, setErrors] = useState({});
+  const [values, setValues] = useState({
+    firstName: "",
+    lastName: "",
+    phone: "",
+    email: "",
+    password: "",
+    password2: "",
+  });
+  const [validated, setValidate] = useState(false);
 
-				<div className="col-md-6 col-sm-8 col-xs-8">
-					{/* {error && <Alert variant="danger">{error}</Alert>}   */}
-					<form
-						className=" bg-light rounded  border border-dark mb-2  mt-2 reg"
-						onSubmit={handleSubmit}
-					>
-						<img
-							src={logo}
-							alt="logo"
-							className="register-logo rounded-circle "
-						/>
-						<h1 className="text-center">טופס הרשמה</h1>
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-						<div className="row">
-							<div className="col-lg-6 col-md-6 col-sm-12 ">
-								<h6 className=" text-right">שם פרטי</h6>
-								<input
-									placeholder="שם פרטי*"
-									className="form-control text-right"
-									name="firstName"
-									type="text"
-									required
-								></input>
-							</div>
-							<div className="col-lg-6 col-md-6 col-sm-12 ">
-								<h6 className=" text-right">שם משפחה</h6>
-								<input
-									placeholder="שם משפחה*"
-									className="form-control text-right"
-									name="lastName"
-									required
-								></input>
-							</div>
-						</div>
+    const newErrors = validateInfo(values);
+    console.log(newErrors);
+    if (Object.keys(newErrors).length > 0) {
+      console.log("dsf");
+      setErrors(newErrors);
+    }
+  };
 
-						<div className="row">
-							<div className="col-lg-6 col-md-6 col-sm-12 ">
-								<h6 className=" text-right">גיל</h6>
-								<input
-									type="number"
-									placeholder="גיל"
-									className="form-control text-right"
-									required
-									name="age"
-								></input>
-							</div>
-							<div className="col-lg-6 col-md-6 col-sm-12 ">
-								<h6 className=" text-right">טלפון</h6>
-								<input
-									placeholder="מספר נייד*"
-									className="form-control text-right"
-									required
-								></input>
-							</div>
-						</div>
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setValues({
+      ...values,
+      [name]: value,
+    });
+  };
+  const navigate = useNavigate();
+  return (
+    <div className=" container-fluid bg-primary  ">
+      <div className="row" dir="rtl">
+        <div className="col-md-3 col-sm-12 col-xs-12"></div>
 
-						<div className="row">
-							<div className="col-lg-6 col-md-6 col-sm-12 ">
-								<h6 className=" text-right">מייל</h6>
-								<input
-									placeholder="מייל*"
-									className="form-control text-right"
-									required
-								></input>
-							</div>
-						</div>
-						<div className="row">
-							<div className="col-lg-6 col-md-6 col-sm-12 ">
-								<h6 className=" text-right"> סיסמה</h6>
-								<input
-									type="password"
-									placeholder="סיסמה*"
-									className="form-control text-right"
-									required
-									name="password"
-									autoComplete="off"
-								></input>
-							</div>
-							<div className="col-lg-6 col-md-6 col-sm-12 ">
-								<h6 className=" text-right">אימות סיסמה</h6>
-								<input
-									type="password"
-									placeholder="אישור סיסמה*"
-									className="form-control text-right"
-									required
-									name="password"
-									autoComplete="off"
-								></input>
-							</div>
-						</div>
-						<div className="row">
-							<div className="col-4">
-								{" "}
-								<Button
-									// disabled={loading}
-									variant="dark"
-									className=" col-12 mb-3 mt-3"
-									onClick={(e) => {
-										navigate("/login");
-										e.preventDefault();
-									}}
-								>
-									כניסה
-								</Button>
-							</div>
-							<div className="col-2"></div>
-							<div className="col-6">
-								<Button
-									type="submit"
-									// disabled={loading}
-									variant="primary"
-									className=" col-12 mb-3 mt-3"
-								>
-									שלח
-								</Button>
-							</div>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
-	);
+        <div className="col-md-6 col-sm-8 col-xs-8">
+          <Form
+            className=" bg-light rounded  border border-dark mb-2  mt-2 reg"
+            noValidate
+            validated={validated}
+            onSubmit={handleSubmit}
+          >
+            <Row>
+              <img
+                src={logo}
+                alt="logo"
+                className="register-logo rounded-circle "
+              />
+            </Row>
+            <Row>
+              <h1 className="text-center">טופס הרשמה</h1>
+            </Row>
+            <Row>
+              <Form.Group as={Col} md="6" lg="6" sm="12">
+                <Form.Label>שם פרטי </Form.Label>
+                <Form.Control
+                  required
+                  placeholder="שם פרטי*"
+                  className="form-control text-right"
+                  name="firstName"
+                  type="text"
+                  value={values.firstName}
+                  onChange={handleChange}
+                  isInvalid={error.firstName}
+                />
+                <Form.Control.Feedback type="invalid">
+                  {error.firstName}
+                </Form.Control.Feedback>
+              </Form.Group>
+              <Form.Group as={Col} md="6" lg="6" sm="12">
+                <Form.Label> שם משפחה </Form.Label>
+                <Form.Control
+                  placeholder="שם משפחה*"
+                  className="form-control text-right"
+                  name="lastName"
+                  value={values.lastName}
+                  //   value={values.lastName}
+                  onChange={handleChange}
+                  isInvalid={error.lastName}
+                  required
+                />
+                <Form.Control.Feedback type="invalid">
+                  {error.lastName}
+                </Form.Control.Feedback>
+              </Form.Group>
+            </Row>
+            <Row>
+              <Form.Group as={Col} md="6" lg="6" sm="12">
+                <Form.Label> טלפון </Form.Label>
+                <Form.Control
+                  placeholder="מספר נייד*"
+                  className="form-control text-right"
+                  value={values.phone}
+                  onChange={handleChange}
+                  required
+                  name="phone"
+                  isInvalid={error.phone}
+                />
+                <Form.Control.Feedback type="invalid">
+                  {error.phone}
+                </Form.Control.Feedback>
+              </Form.Group>
+
+              <Form.Group as={Col} md="6" lg="6" sm="12">
+                <Form.Label> מייל </Form.Label>
+                <Form.Control
+                  placeholder="מייל*"
+                  type="email"
+                  className="form-control text-right"
+                  value={values.email}
+                  onChange={handleChange}
+                  isInvalid={error.email}
+                  required
+                  name="email"
+                />
+                <Form.Control.Feedback type="invalid">
+                  {error.email}
+                </Form.Control.Feedback>
+              </Form.Group>
+            </Row>
+            <Row>
+              <Form.Group as={Col} md="6" lg="6" sm="12">
+                <Form.Label> סיסמה </Form.Label>
+                <Form.Control
+                  type="password"
+                  placeholder="סיסמה*"
+                  className="form-control text-right"
+                  value={values.password}
+                  onChange={handleChange}
+                  required
+                  name="password"
+                  autoComplete="off"
+                  isInvalid={error.password}
+                />
+                <Form.Control.Feedback type="invalid">
+                  {error.password}
+                </Form.Control.Feedback>
+              </Form.Group>
+              <Form.Group as={Col} md="6" lg="6" sm="12">
+                <Form.Label> אימות סיסמה </Form.Label>
+                <Form.Control
+                  type="password"
+                  placeholder="אישור סיסמה*"
+                  value={values.password2}
+                  onChange={handleChange}
+                  className="form-control text-right"
+                  required
+                  name="password2"
+                  autoComplete="off"
+                  isInvalid={error.password2}
+                />
+                <Form.Control.Feedback type="invalid">
+                  {error.password2}
+                </Form.Control.Feedback>
+              </Form.Group>
+            </Row>
+            <Row>
+              <Form.Group as={Col} md="4" lg="4" sm="12">
+                <Button
+                  size="lg"
+                  variant="dark"
+                  className=" col-12 mb-3 mt-3"
+                  onClick={(e) => {
+                    navigate("/login");
+                    e.preventDefault();
+                  }}
+                >
+                  כניסה
+                </Button>
+              </Form.Group>
+              <div className="col-2"></div>
+              <Form.Group as={Col} md="6" lg="6" sm="12">
+                <Button
+                  size="lg"
+                  type="submit"
+                  // disabled={loading}
+                  variant="primary"
+                  className=" col-12 mb-3 mt-3"
+                >
+                  שלח
+                </Button>
+              </Form.Group>
+            </Row>
+          </Form>
+        </div>
+      </div>
+    </div>
+  );
 }

@@ -1,8 +1,10 @@
 import { Link, Route, Routes } from "react-router-dom";
 import { BsSearch } from "react-icons/bs";
 import "./Header.css";
+import { useState } from "react";
 
-export default function Header() {
+export default function Header(props) {
+	const [text, setText] = useState("");
 	return (
 		<div>
 			<div className="container">
@@ -14,9 +16,18 @@ export default function Header() {
 								type="text"
 								className="form-control form-input"
 								placeholder="Search anything..."
+								onChange={(v) => {
+									setText(v.target.value);
+								}}
 							/>
+
 							<span className="left-pan">
-								<BsSearch />
+								<BsSearch
+									onClick={() => {
+										props.setName(text);
+										console.log(text);
+									}}
+								/>
 							</span>
 						</div>
 					</div>
@@ -25,11 +36,3 @@ export default function Header() {
 		</div>
 	);
 }
-
-// <Link to="/Login">Login</Link>
-// <Routes>
-//   <Route path="/" element />
-//   <Route path="/Login" element={<Login />} />
-//   <Route path="/NewUser" element={<NewUser />} />
-//   <Route />
-// </Routes>
