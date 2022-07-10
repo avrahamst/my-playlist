@@ -3,7 +3,7 @@ import "./App.css";
 import Layout from "./componnt/Layout";
 import { useState } from "react";
 import { UserContext, UsersContext } from "./context/UserContext";
-import "bootstrap/dist/css/bootstrap.min.css";
+// import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   const [user, setUser] = useState({ name: "avi", password: "123" });
