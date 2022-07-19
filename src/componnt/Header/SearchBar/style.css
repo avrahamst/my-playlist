@@ -1,43 +1,35 @@
+
+.search-bar-container{   
+    margin-right: 10%;
+    margin-left: 10%;
+}
 body{
 
     background: #536DFE !important;
 }
 
-.height{
-
+.serch-bar-height{
+   
     height: 10vh;
 }
 
-.form{
 
-    position: relative;
-}
 
-.form .fa-search{
-
-    position: absolute;
-    top:20px;
-    left: 20px;
-    color: #9ca3af;
-
-}
 
 .form span{
-
-        position: absolute;
-    right: 17px;
+    right: 90%;
     top: 13px;
     padding: 2px;
-    border-left: 1px solid #d1d5db;
+    border-right: 1px solid #d1d5db;
+    cursor: pointer;
+    
 
 }
 
-.left-pan{
-    padding-left: 7px;
-}
 
-.left-pan i{
-   
+
+.search-bar-left-pan {
+    justify-content: end;
    padding-left: 10px;
 }
 

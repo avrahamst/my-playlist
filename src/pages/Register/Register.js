@@ -1,11 +1,10 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { Form, Row, Button, FormGroup, Col } from "react-bootstrap";
-
-import validateInfo from "../CustomHooks/validateInfo";
-
+import { useNavigate } from "react-router-dom";
+import { Form, Row, Button, Col } from "react-bootstrap";
+import validateInfo from "./validateInfo";
 import { useState } from "react";
-import logo from "../componnt/logo3.jpg";
+import logo from "../../assets/logo3.jpg";
+import axios from "axios";
 import "./Register.css";
 
 export default function Register() {
@@ -18,16 +17,25 @@ export default function Register() {
     password: "",
     password2: "",
   });
-  const [validated, setValidate] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     const newErrors = validateInfo(values);
-    console.log(newErrors);
     if (Object.keys(newErrors).length > 0) {
-      console.log("dsf");
       setErrors(newErrors);
+    } else {
+      axios
+        .post("http://localhost:3001/users/register", values)
+        .then((response) => {
+          console.log(response.data);
+          localStorage.token = response.data;
+          navigate("/main");
+        })
+        .catch((err) => {
+          console.log(err.response);
+          setErrors({ errFatc: err.response.data });
+        });
     }
   };
 
@@ -40,7 +48,7 @@ export default function Register() {
   };
   const navigate = useNavigate();
   return (
-    <div className=" container-fluid bg-primary  ">
+    <div className=" container-fluid  ">
       <div className="row" dir="rtl">
         <div className="col-md-3 col-sm-12 col-xs-12"></div>
 
@@ -48,7 +56,6 @@ export default function Register() {
           <Form
             className=" bg-light rounded  border border-dark mb-2  mt-2 reg"
             noValidate
-            validated={validated}
             onSubmit={handleSubmit}
           >
             <Row>
@@ -60,6 +67,11 @@ export default function Register() {
             </Row>
             <Row>
               <h1 className="text-center">טופס הרשמה</h1>
+              {error.errFatc && (
+                <p className="text-center text-danger rounded w-25 ">
+                  {error.errFatc}
+                </p>
+              )}
             </Row>
             <Row>
               <Form.Group as={Col} md="6" lg="6" sm="12">

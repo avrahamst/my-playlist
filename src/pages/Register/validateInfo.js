@@ -8,7 +8,7 @@ export default function validateInfo(values) {
   }
   if (!values.phone) {
     errors.phone = "צריך להזין מספר טלפון";
-  } else if (/^05\d([-]{0,1})\d{7}$/.test(values.phone)) {
+  } else if (!/^0\d([\d]{0,1})([-]{0,1})\d{7}$/.test(values.phone)) {
     errors.phone = "מספר טלפון לא תקין";
   }
 

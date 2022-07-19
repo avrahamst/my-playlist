@@ -1,0 +1,10 @@
+.nav_container{
+    display: flex;
+    justify-content: space-around;
+}
+.input_size{
+    flex-grow:3
+}
+.nav_size{
+    flex-grow:1
+}
