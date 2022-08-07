@@ -11,11 +11,10 @@
     width: 25%;
     margin-right: 35%
 }
-.container-fluid{
-    height: 100vh;
-}
 
-body,html{
-    margin:0;
-    width:100%;
-  }
+.register-container{
+    background-color: rgba(80, 29, 29, 0.317);
+}
+.text-color-reg{
+    color: white;
+}

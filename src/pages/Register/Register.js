@@ -48,13 +48,13 @@ export default function Register() {
   };
   const navigate = useNavigate();
   return (
-    <div className=" container-fluid  ">
+    <div className=" container-fluid   ">
       <div className="row" dir="rtl">
         <div className="col-md-3 col-sm-12 col-xs-12"></div>
 
         <div className="col-md-6 col-sm-8 col-xs-8">
           <Form
-            className=" bg-light rounded  border border-dark mb-2  mt-2 reg"
+            className=" register-container rounded  border border-dark mb-2  mt-2 reg"
             noValidate
             onSubmit={handleSubmit}
           >
@@ -66,7 +66,7 @@ export default function Register() {
               />
             </Row>
             <Row>
-              <h1 className="text-center">טופס הרשמה</h1>
+              <h1 className="text-center text-color-reg">טופס הרשמה</h1>
               {error.errFatc && (
                 <p className="text-center text-danger rounded w-25 ">
                   {error.errFatc}
@@ -75,7 +75,9 @@ export default function Register() {
             </Row>
             <Row>
               <Form.Group as={Col} md="6" lg="6" sm="12">
-                <Form.Label>שם פרטי </Form.Label>
+                <Form.Label>
+                  <label className="text-color-reg">שם פרטי </label>
+                </Form.Label>
                 <Form.Control
                   required
                   placeholder="שם פרטי*"
@@ -91,7 +93,10 @@ export default function Register() {
                 </Form.Control.Feedback>
               </Form.Group>
               <Form.Group as={Col} md="6" lg="6" sm="12">
-                <Form.Label> שם משפחה </Form.Label>
+                <Form.Label>
+                  {" "}
+                  <label className="text-color-reg">שם משפחה </label>
+                </Form.Label>
                 <Form.Control
                   placeholder="שם משפחה*"
                   className="form-control text-right"
@@ -109,7 +114,7 @@ export default function Register() {
             </Row>
             <Row>
               <Form.Group as={Col} md="6" lg="6" sm="12">
-                <Form.Label> טלפון </Form.Label>
+                <Form.Label className="text-color-reg">טלפון</Form.Label>
                 <Form.Control
                   placeholder="מספר נייד*"
                   className="form-control text-right"
@@ -125,7 +130,7 @@ export default function Register() {
               </Form.Group>
 
               <Form.Group as={Col} md="6" lg="6" sm="12">
-                <Form.Label> מייל </Form.Label>
+                <Form.Label className="text-color-reg"> מייל </Form.Label>
                 <Form.Control
                   placeholder="מייל*"
                   type="email"
@@ -143,7 +148,7 @@ export default function Register() {
             </Row>
             <Row>
               <Form.Group as={Col} md="6" lg="6" sm="12">
-                <Form.Label> סיסמה </Form.Label>
+                <Form.Label className="text-color-reg"> סיסמה </Form.Label>
                 <Form.Control
                   type="password"
                   placeholder="סיסמה*"
@@ -160,7 +165,10 @@ export default function Register() {
                 </Form.Control.Feedback>
               </Form.Group>
               <Form.Group as={Col} md="6" lg="6" sm="12">
-                <Form.Label> אימות סיסמה </Form.Label>
+                <Form.Label className="text-color-reg">
+                  {" "}
+                  אימות סיסמה{" "}
+                </Form.Label>
                 <Form.Control
                   type="password"
                   placeholder="אישור סיסמה*"

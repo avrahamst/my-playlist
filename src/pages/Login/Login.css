@@ -1,7 +1,8 @@
-.from-container{
+.from-container-login{
     border: 0px solid;
     padding: 50px 60px;
-    
+    margin-inline:auto;
+    background-color: rgba(80, 29, 29, 0.317);
     -webkit-box-shadow: -2px 4px 26px 11px rgba(0,0,0,0.75);
     -moz-box-shadow: -2px 4px 26px 11px rgba(0,0,0,0.75);
     box-shadow: -2px 4px 26px 11px rgba(0,0,0,0.75);
@@ -18,4 +19,7 @@
     .login-logo{
         width: 40%;
         margin-right: 30%
+    }
+    .text-color-login{
+        color: white;
     }

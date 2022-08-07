@@ -3,10 +3,12 @@ import "./App.css";
 import Layout from "./componnt/Layout/Layout";
 import { useState, useEffect } from "react";
 import { UserContext } from "./context/UserContext";
+import { SongContext } from "./context/SongContext";
 import axios from "axios";
 
 function App() {
   const [user, setUser] = useState();
+  const [songs, setSongs] = useState();
 
   useEffect(() => {
     // check if have token and get userby token
@@ -27,9 +29,11 @@ function App() {
   }, [user]);
 
   return (
-    <UserContext.Provider value={{ user, setUser }}>
-      <Layout />
-    </UserContext.Provider>
+    <SongContext.Provider value={{ songs, setSongs }}>
+      <UserContext.Provider value={{ user, setUser }}>
+        <Layout />
+      </UserContext.Provider>
+    </SongContext.Provider>
   );
 }
 

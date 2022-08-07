@@ -3,10 +3,12 @@ import "./style.css";
 
 import { useContext, useState } from "react";
 import { UserContext } from "../../../context/UserContext";
+import { SongContext } from "../../../context/SongContext";
 import axios from "axios";
 
 export default function SearchBar(props) {
   const { user, setUser } = useContext(UserContext);
+  const { songs, setSongs } = useContext(SongContext);
 
   const [text, setText] = useState("");
 
@@ -17,6 +19,7 @@ export default function SearchBar(props) {
       },
     });
     console.log(res);
+    setSongs(res);
   };
   return (
     <div className="search-bar-container" dir="rtl">
